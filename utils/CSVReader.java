@@ -7,7 +7,7 @@ import java.io.IOException;
 public class CSVReader {
 
 	public static void main(String[] args) {
-		String csvFile = "[PATH-AL-ARCHIVO]/dataset.csv";
+		String csvFile = "./libros/dataset.csv";
 		String line = "";
 		String cvsSplitBy = ";";
 

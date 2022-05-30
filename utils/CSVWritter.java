@@ -10,7 +10,7 @@ public class CSVWritter {
 	public static void main(String[] args) {
 		BufferedWriter bw = null;
 		try {
-			File file = new File("[PATH-AL-ARCHIVO]/salida.csv");
+			File file = new File("./libros/salida.csv");
 			if (!file.exists()) {
 				file.createNewFile();
 			}
