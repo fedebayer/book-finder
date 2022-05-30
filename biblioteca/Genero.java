@@ -1,5 +1,7 @@
+package biblioteca;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Genero {
@@ -8,12 +10,12 @@ public class Genero {
 	private Genero generoIzquierdo;
 	private Genero generoDerecho;
 	
-	public Genero(String nombre, List<Libro> libros) {
+	public Genero(String nombre) {
 		super();
 		this.generoIzquierdo = null;
 		this.generoDerecho = null;
 		this.nombre = nombre;
-		this.libros = libros;
+		this.libros = new LinkedList<Libro>();
 	}
 
 	public String getNombre() {
@@ -36,9 +38,7 @@ public class Genero {
 	}
 	
 	public void addLibro(Libro l) {
-		if(!libros.contains(l)){
 			this.libros.add(l);
-		}
 	}
 
 	public Genero getGeneroIzquierdo() {

@@ -1,13 +1,14 @@
+package biblioteca;
 import java.util.ArrayList;
 
 public class Libro {
 	private String titulo;
 	private String autor;
-	private Integer cantPaginas;
+	private String cantPaginas;
 	private ArrayList<String> generos;
 	
 	
-	public Libro(String titulo, String autor, Integer cantPaginas, ArrayList<String> generos) {
+	public Libro(String titulo, String autor, String cantPaginas) {
 		super();
 		this.titulo = titulo;
 		this.autor = autor;
@@ -27,10 +28,10 @@ public class Libro {
 	public void setAutor(String autor) {
 		this.autor = autor;
 	}
-	public Integer getCantPaginas() {
+	public String getCantPaginas() {
 		return cantPaginas;
 	}
-	public void setCantPaginas(Integer cantPaginas) {
+	public void setCantPaginas(String cantPaginas) {
 		this.cantPaginas = cantPaginas;
 	}
 	public ArrayList<String> getGeneros() {
