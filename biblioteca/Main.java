@@ -15,32 +15,31 @@ public class Main {
 		CSVReader reader = new CSVReader();
 		ArrayList<Libro> libros = reader.getData();
 		HashSet<String> generos = new HashSet<>();
-		for(Libro libro : libros) {
+		for (Libro libro : libros) {
 			generos.addAll(libro.getGeneros());
 		}
-		
+
 		Biblioteca biblioteca = new Biblioteca();
-		for(String genero : generos) {
+		for (String genero : generos) {
 			biblioteca.createGenero(genero);
 		}
-		
+
 		biblioteca.setLibrosToGenero(libros);
-		
+
 		BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Ingrese genero: ");
 		String toSearch = null;
 		try {
 			toSearch = entrada.readLine();
-			List librosOfGenero = biblioteca.getLibrosOfGenero(toSearch);
-			Iterator itr = librosOfGenero.iterator();
-			while(itr.hasNext()){
-				System.out.println(((Libro) itr.next()).getTitulo());
+			List<Libro> librosOfGenero = biblioteca.getLibrosOfGenero(toSearch);
+			Iterator<Libro> itr = librosOfGenero.iterator();
+			while (itr.hasNext()) {
+				System.out.println(itr.next().getTitulo());
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 	}
 }
+
