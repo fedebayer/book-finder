@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import utils.CSVReader;
+import utils.CSVWritter;
 
 public class Main {
 	public static void main(String[] args) {
@@ -30,16 +31,21 @@ public class Main {
 		System.out.println("Ingrese genero: ");
 		String toSearch = null;
 		try {
+			CSVWritter writter = new CSVWritter();
 			toSearch = entrada.readLine();
 			List<Libro> librosOfGenero = biblioteca.getLibrosOfGenero(toSearch);
 			Iterator<Libro> itr = librosOfGenero.iterator();
-			while (itr.hasNext()) {
-				System.out.println(itr.next().getTitulo());
+
+			writter.write(itr);
+
+			Iterator<Libro> itr2 = librosOfGenero.iterator();
+			while (itr2.hasNext()) {
+				System.out.println(itr2.next().getTitulo());
 			}
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
 	}
 }
-

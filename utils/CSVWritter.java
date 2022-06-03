@@ -4,10 +4,13 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Iterator;
+
+import biblioteca.Libro;
 
 public class CSVWritter {
 
-	public static void main(String[] args) {
+	public void write(Iterator<Libro> libros) {
 		BufferedWriter bw = null;
 		try {
 			File file = new File("./libros/salida.csv");
@@ -17,22 +20,25 @@ public class CSVWritter {
 
 			FileWriter fw = new FileWriter(file);
 			bw = new BufferedWriter(fw);
-
-			// Escribo la primer linea del archivo
-			String contenidoLinea1 = "Usuario1;Tiempo1";
-			bw.write(contenidoLinea1);
+			bw.write("Titulo , Autor, Paginas, Generos");
 			bw.newLine();
 
-			// Escribo la segunda linea del archivo
-			String contenidoLinea2 = "Usuario2;Tiempo2";
-			bw.write(contenidoLinea2);
-			bw.newLine();
-
-			/*
-			 *
-			 * ...
-			 * 
-			 */
+			while (libros.hasNext()) {
+				Libro libro = libros.next();
+				String linea = "";
+				linea += libro.toString();
+				linea += " ," + libro.getAutor();
+				linea += " ," + libro.getCantPaginas();
+				String generos = "";
+				for (String g : libro.getGeneros()) {
+					generos += " " + g;
+				}
+				linea += " ," + generos;
+				linea = linea.replace("[", "");
+				linea = linea.replace("]", "");
+				bw.write(linea);
+				bw.newLine();
+			}
 
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
