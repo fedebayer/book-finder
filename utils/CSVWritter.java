@@ -13,6 +13,9 @@ public class CSVWritter {
 	public void write(Iterator<Libro> libros) {
 		BufferedWriter bw = null;
 		try {
+			if (!libros.hasNext()) {
+				return;
+			}
 			File file = new File("./libros/salida.csv");
 			if (!file.exists()) {
 				file.createNewFile();
@@ -20,22 +23,12 @@ public class CSVWritter {
 
 			FileWriter fw = new FileWriter(file);
 			bw = new BufferedWriter(fw);
-			bw.write("Titulo , Autor, Paginas, Generos");
+			bw.write("Titulo");
 			bw.newLine();
 
 			while (libros.hasNext()) {
-				Libro libro = libros.next();
 				String linea = "";
-				linea += libro.toString();
-				linea += " ," + libro.getAutor();
-				linea += " ," + libro.getCantPaginas();
-				String generos = "";
-				for (String g : libro.getGeneros()) {
-					generos += " " + g;
-				}
-				linea += " ," + generos;
-				linea = linea.replace("[", "");
-				linea = linea.replace("]", "");
+				linea += libros.next().toString();
 				bw.write(linea);
 				bw.newLine();
 			}
