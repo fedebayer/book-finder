@@ -19,3 +19,13 @@ cual simplificará el acceso a solo un subconjunto de todos los libros existente
 - Entrada: El programa tomará un archivo .csv de entrada.
 - Salida: El programa deberá generar un archivo .csv con los títulos de los libros que cumplen
 con el género dado.
+
+### Etapa 2. Estadísticas de búsqueda.
+En esta última etapa del trabajo se desea realizar un análisis de la utilización del buscador,
+por parte de los usuarios; puntualmente la relación entre los géneros ingresados en las
+distintas búsquedas. Se asume que la herramienta permite ingresar un conjunto de
+categorías a buscar, con lo cual la colección de libros resultantes contendrá sólo los libros
+que cumplen con todas las categorías ingresadas.
+
+- Entrada: El programa tomará un archivo .csv de entrada.
+- Salida: El programa deberá generar por consola los generos relacionados al ingresado por el usuario.
