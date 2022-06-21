@@ -63,7 +63,7 @@ public class CSVReader {
 	public ArrayList<ArrayList<String>> getData3() {
 
 		ArrayList<ArrayList<String>> lineasGeneros = new ArrayList<>();
-		String csvFile = "tpe/libros2/dataset2.csv";
+		String csvFile = "tpe/libros2/dataset1.csv";
 		String line = "";
 		String cvsSplitBy = ",";
 

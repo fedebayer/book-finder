@@ -107,7 +107,6 @@ public class Busquedas<T> implements Grafo<T> {
 	}
 
 	@Override
-
 	public Iterator<Arco<T>> obtenerArcos() {// O(V*a) donde V representa todos los vertices y "a" cada arco de este
 												// vertice
 		ArrayList<Arco<T>> auxArcos = new ArrayList<Arco<T>>();
