@@ -1,11 +1,13 @@
 package utils;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 
+import biblioteca.Biblioteca;
+import biblioteca.Busquedas;
 import biblioteca.Libro;
 
 public class CSVReader {
@@ -13,10 +15,14 @@ public class CSVReader {
 	public static void main(String[] args) {
 	}
 
-	public ArrayList<Libro> getData() {
+	public CSVReader() {
+	}
 
-		ArrayList<Libro> libros = new ArrayList<Libro>();
-		String csvFile = "tpe/libros/dataset1.csv";
+	public void getData(Biblioteca biblio) {
+
+		ArrayList<Libro> libros = new ArrayList<>();
+		ArrayList<String> generos = new ArrayList<>();
+		File csvFile = new File("tpe/libros/dataset1.csv");
 		String line = "";
 		String cvsSplitBy = ",";
 
@@ -29,18 +35,22 @@ public class CSVReader {
 				String[] aux = items[3].split(" ");
 				for (int j = 0; j < aux.length; j++) {
 					libro.addGenero(aux[j]);
+					if (!generos.contains(aux[j])) {
+						generos.add(aux[j]);
+						biblio.createGenero(aux[j]);
+					}
 				}
 				libros.add(libro);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return libros;
+		biblio.setLibrosToGenero(libros);
 	}
 
-	public HashSet<String> getData2() {
+	public void getData2(Busquedas<?> busquedas) {
 
-		HashSet<String> generos = new HashSet<>();
+		ArrayList<String> generos = new ArrayList<>();
 		String csvFile = "tpe/libros2/dataset1.csv";
 		String line = "";
 		String cvsSplitBy = ",";
@@ -51,19 +61,20 @@ public class CSVReader {
 
 				String[] items = line.split(cvsSplitBy);
 				for (int j = 0; j < items.length; j++) {
-					generos.add(items[j]);
+					if (!generos.contains(items[j])) {
+						generos.add(items[j]);
+						busquedas.agregarVertice(items[j]);
+					}
 				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return generos;
 	}
 
-	public ArrayList<ArrayList<String>> getData3() {
+	public void getData3(Busquedas<?> busquedas) {
 
-		ArrayList<ArrayList<String>> lineasGeneros = new ArrayList<>();
-		String csvFile = "tpe/libros2/dataset2.csv";
+		String csvFile = "tpe/libros2/dataset1.csv";
 		String line = "";
 		String cvsSplitBy = ",";
 
@@ -71,19 +82,16 @@ public class CSVReader {
 
 			while ((line = br.readLine()) != null) {
 
-				ArrayList<String> lineaGeneros = new ArrayList<>();
-
 				String[] items = line.split(cvsSplitBy);
-				for (int j = 0; j < items.length; j++) {
-					lineaGeneros.add(items[j]);
+				for (int j = 0; j < items.length - 1; j++) {
+					if (items[j + 1] != null)
+						busquedas.agregarArco(items[j], items[j + 1]);
 				}
-				lineasGeneros.add(lineaGeneros);
 			}
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return lineasGeneros;
 	}
 
 }

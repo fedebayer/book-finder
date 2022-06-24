@@ -23,7 +23,6 @@ public class Busquedas<T> implements Grafo<T> {
 
 	public ArrayList<String> generosBuscadosAfter(String search) {
 		if (!contieneVertice(search)) {
-			System.out.println("no lo contiene");
 			return null;
 		} else {
 			ArrayList<String> res = new ArrayList<>();
@@ -31,8 +30,6 @@ public class Busquedas<T> implements Grafo<T> {
 			while (adyacentes.hasNext()) {
 				res.add(adyacentes.next());
 			}
-			if (res.isEmpty())
-				System.out.println("no tiene adyacentes");
 			Collections.sort(res, new ComparadorPesoArco<T>(search, this));
 			Collections.reverse(res);
 			return res;
@@ -107,7 +104,6 @@ public class Busquedas<T> implements Grafo<T> {
 	}
 
 	@Override
-
 	public Iterator<Arco<T>> obtenerArcos() {// O(V*a) donde V representa todos los vertices y "a" cada arco de este
 												// vertice
 		ArrayList<Arco<T>> auxArcos = new ArrayList<Arco<T>>();
