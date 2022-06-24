@@ -6,7 +6,6 @@ import java.util.Iterator;
 import biblioteca.Busquedas;
 
 public class Greedy {
-	@SuppressWarnings("unused")
 	private Busquedas<?> busquedas;
 	private ArrayList<String> conjunto;
 
@@ -17,38 +16,42 @@ public class Greedy {
 
 	public Solucion greedy(ArrayList<String> c) {
 		Solucion solucion = new Solucion();
-		conjunto = c;
+		conjunto.addAll(c);
 
 		while (!conjunto.isEmpty()) {
-			String x = seleccionar();
-			this.conjunto.remove(x);
+			String x = seleccionar(solucion);
 			solucion.add(x);
 		}
 		return solucion;
 	}
 
-	private String seleccionar() {
+	private String seleccionar(Solucion solucion) {
 		String y = conjunto.get(0);
-		if (busquedas.obtenerAdyacentes(y) == null) {
+		Iterator<String> it = busquedas.obtenerAdyacentes(y);
+
+		if (it.hasNext()) {
+			conjunto.clear();
+			while (it.hasNext()) {
+				String sig = it.next();
+				if (!solucion.getSolucion().contains(sig))
+					conjunto.add(sig);
+			}
+			return y;
+
+		} else {
 			for (String g : conjunto) {
-				if (busquedas.obtenerAdyacentes(g) != null) {
-					Iterator<String> it = busquedas.obtenerAdyacentes(g);
-					while (it.hasNext()) {
-						conjunto.add(it.next());
+				Iterator<String> it2 = busquedas.obtenerAdyacentes(g);
+				if (it2.hasNext()) {
+					conjunto.clear();
+					while (it2.hasNext()) {
+						String sig = it2.next();
+						if (!solucion.getSolucion().contains(sig))
+							conjunto.add(sig);
 					}
 					return g;
 				}
-
-			}
-			return y;
-		} else {
-			Iterator<String> it = busquedas.obtenerAdyacentes(y);
-			while (it.hasNext()) {
-				conjunto.add(it.next());
 			}
 			return y;
 		}
-
 	}
-
 }

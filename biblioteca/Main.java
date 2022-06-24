@@ -5,11 +5,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import biblioteca.busquedas.Arco;
 import biblioteca.busquedas.DFS;
 import biblioteca.busquedas.Greedy;
 import utils.CSVReader;
+import utils.CSVWritter;
 
 public class Main {
 	public static <T> void main(String[] args) {
@@ -20,22 +22,29 @@ public class Main {
 		// Parte 1
 		////////////////////////////////////////////////////////////////////////////
 		/*
-		 * Biblioteca biblioteca = new Biblioteca(); reader.getData(biblioteca);
-		 * 
-		 * BufferedReader entrada = new BufferedReader(new
-		 * InputStreamReader(System.in)); System.out.println("Ingrese genero: "); String
-		 * toSearch = null; try { CSVWritter writter = new CSVWritter(); toSearch =
-		 * entrada.readLine(); List<Libro> librosOfGenero =
-		 * biblioteca.getLibrosOfGenero(toSearch); Iterator<Libro> itr =
-		 * librosOfGenero.iterator();
-		 * 
-		 * writter.write(itr);
-		 * 
-		 * Iterator<Libro> itr2 = librosOfGenero.iterator(); while (itr2.hasNext()) {
-		 * System.out.println(itr2.next().getTitulo()); }
-		 * 
-		 * } catch (IOException e) { e.printStackTrace(); }
-		 */
+		Biblioteca biblioteca = new Biblioteca();
+		reader.getData(biblioteca);
+
+		BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Ingrese genero: ");
+		String toSearch = null;
+		try {
+			CSVWritter writter = new CSVWritter();
+			toSearch = entrada.readLine();
+			List<Libro> librosOfGenero = biblioteca.getLibrosOfGenero(toSearch);
+			Iterator<Libro> itr = librosOfGenero.iterator();
+
+			writter.write(itr);
+
+			Iterator<Libro> itr2 = librosOfGenero.iterator();
+			while (itr2.hasNext()) {
+				System.out.println(itr2.next().getTitulo());
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		*/
 		//////////////////////////////////////////////////////////////////////////////
 		// Parte 2
 		//////////////////////////////////////////////////////////////////////////////
@@ -91,24 +100,22 @@ public class Main {
 				candidatos.add(adyacentesDeGenero.next());
 			}
 			Greedy greedy = new Greedy(busquedas);
-			// Cuales son los candidatos?, como crearlos?
-			// Puede que se vaya eligiendo el arco con mayor peso?
 			ArrayList<String> secuenciaDeMayorValor = greedy.greedy(candidatos).getSolucion();
 			if (secuenciaDeMayorValor != null) {
 				System.out.println(
 						"\n\n Secuencia de generos de mayor valor de busqueda a partir del genero ingresado: \n");
-				for (String g : secuenciaDeMayorValor) {
-					System.out.println(g);
-				}
+				System.out.println(secuenciaDeMayorValor);
 			}
 			//// Punto 5////
 
 			DFS dfs = new DFS(busquedas);
 			ArrayList<ArrayList<String>> generosAfines = dfs.dfs(toSearch2);
-			System.out.println("\n\n Generos afines del genero ingresado: \n");
-			for (ArrayList<String> g : generosAfines) {
-				System.out.println(g);
-			}
+			/*
+			  System.out.println("\n\n Generos afines del genero ingresado: \n"); 
+			  for (ArrayList<String> g : generosAfines) { 
+				  System.out.println(g); 
+				  }
+			 */
 
 			Busquedas<?> grafoNuevo = new Busquedas<>();
 			for (ArrayList<String> generos : generosAfines) {

@@ -83,7 +83,7 @@ public class CSVReader {
 			while ((line = br.readLine()) != null) {
 
 				String[] items = line.split(cvsSplitBy);
-				for (int j = 0; j < items.length - 2; j++) {
+				for (int j = 0; j < items.length - 1; j++) {
 					if (items[j + 1] != null)
 						busquedas.agregarArco(items[j], items[j + 1]);
 				}
