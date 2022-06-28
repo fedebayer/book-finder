@@ -59,14 +59,13 @@ public class Busquedas<T> implements Grafo<T> {
 		
 	}
 	@Override
-	public void agregarVertice(String vertice) {// O(1) tiempo constante de acceso a memoria
+	public void agregarVertice(String vertice) {
 		if (!vertices.containsKey(vertice)) {
 			vertices.put(vertice, new ArrayList<Arco<T>>());
 		}
 	}
 
-	public void agregarArco(String vertice1, String vertice2) {// O(1) tiempo constante de acceso a
-																// memoria
+	public void agregarArco(String vertice1, String vertice2) {
 		if (existeArco(vertice1, vertice2)) {
 			obtenerArco(vertice1, vertice2).sum();
 
@@ -76,8 +75,7 @@ public class Busquedas<T> implements Grafo<T> {
 	}
 
 	@Override
-	public boolean contieneVertice(String vertice) {// O(1) constante en memoria busca por el indice que le pasas que
-													// representa el vertice
+	public boolean contieneVertice(String vertice) {
 		Iterator<String> vertices = obtenerVertices();
 		boolean res = false;
 		while (vertices.hasNext()) {
@@ -88,8 +86,7 @@ public class Busquedas<T> implements Grafo<T> {
 	}
 
 	@Override
-	public boolean existeArco(String vertice1, String vertice2) {// O(A) donde A representa todos los arcos de un
-																	// vertice
+	public boolean existeArco(String vertice1, String vertice2) {
 
 		if (vertices.containsKey(vertice1) && vertices.containsKey(vertice2)) {
 			return this.obtenerArco(vertice1, vertice2) != null;
@@ -98,9 +95,7 @@ public class Busquedas<T> implements Grafo<T> {
 		return false;
 	}
 
-	public Arco<T> obtenerArco(String vertice1, String vertice2) { // O(A) A representa todos los arcos de un
-																	// vertice
-		// en el peor de los casos ambos elementos se encuentran a lo ultimo
+	public Arco<T> obtenerArco(String vertice1, String vertice2) { 
 		Iterator<Arco<T>> iteradorArcos = vertices.get(vertice1).iterator();
 		while (iteradorArcos.hasNext()) {
 			Arco<T> arcoBuscado = iteradorArcos.next();
@@ -112,21 +107,20 @@ public class Busquedas<T> implements Grafo<T> {
 	}
 
 	@Override
-	public Iterator<String> obtenerVertices() {// O(1) constante de acceso a memoria
+	public Iterator<String> obtenerVertices() {
 		return vertices.keySet().iterator();
 
 	}
 
 	@Override
-	public Iterator<String> obtenerAdyacentes(String vertice) {// 0(1) constante en acceso de memoria
+	public Iterator<String> obtenerAdyacentes(String vertice) {
 
 		Iterator<Arco<T>> auxArco = vertices.get(vertice).iterator();
 		return new arcoIterator<T>(auxArco);
 	}
 
 	@Override
-	public Iterator<Arco<T>> obtenerArcos() {// O(V*a) donde V representa todos los vertices y "a" cada arco de este
-												// vertice
+	public Iterator<Arco<T>> obtenerArcos() {
 		ArrayList<Arco<T>> auxArcos = new ArrayList<Arco<T>>();
 		Iterator<Arco<T>> aux = null;
 		Iterator<String> iterator = this.obtenerVertices();
@@ -141,7 +135,7 @@ public class Busquedas<T> implements Grafo<T> {
 	}
 
 	@Override
-	public Iterator<Arco<T>> obtenerArcos(String vertice) { // O(1) tiempo constante de acceso a memoria
+	public Iterator<Arco<T>> obtenerArcos(String vertice) { 
 		return vertices.get(vertice).iterator();
 	}
 
