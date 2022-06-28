@@ -85,6 +85,7 @@ public class Main {
 		try {
 			toSearch2 = entrada2.readLine();
 			/// Punto 3//////////
+			
 			ArrayList<String> generosBuscados = busquedas.generosBuscadosAfter(toSearch2);
 			if (generosBuscados != null) {
 				System.out.println("\n Generos mas buscados luego del genero ingresado: \n");
@@ -94,13 +95,8 @@ public class Main {
 			}
 
 			//// Punto 4//////
-			Iterator<String> adyacentesDeGenero = busquedas.obtenerAdyacentes(toSearch2);
-			ArrayList<String> candidatos = new ArrayList<>();
-			while (adyacentesDeGenero.hasNext()) {
-				candidatos.add(adyacentesDeGenero.next());
-			}
-			Greedy greedy = new Greedy(busquedas);
-			ArrayList<String> secuenciaDeMayorValor = greedy.greedy(candidatos).getSolucion();
+
+			ArrayList<String> secuenciaDeMayorValor = busquedas.getSecuenciaGeneros(toSearch2);
 			if (secuenciaDeMayorValor != null) {
 				System.out.println(
 						"\n\n Secuencia de generos de mayor valor de busqueda a partir del genero ingresado: \n");
@@ -108,24 +104,8 @@ public class Main {
 			}
 			//// Punto 5////
 
-			DFS dfs = new DFS(busquedas);
-			ArrayList<ArrayList<String>> generosAfines = dfs.dfs(toSearch2);
-			/*
-			  System.out.println("\n\n Generos afines del genero ingresado: \n"); 
-			  for (ArrayList<String> g : generosAfines) { 
-				  System.out.println(g); 
-				  }
-			 */
-
-			Busquedas<?> grafoNuevo = new Busquedas<>();
-			for (ArrayList<String> generos : generosAfines) {
-				for (String g : generos) {
-					grafoNuevo.agregarVertice(g);
-				}
-			}
-
 			System.out.println("\n Vetices del grafo nuevo \n");
-			Iterator<String> vertices2 = grafoNuevo.obtenerVertices();
+			Iterator<String> vertices2 = busquedas.getGrafoGenerosAfines(toSearch2).obtenerVertices();
 			while (vertices2.hasNext()) {
 				System.out.println(vertices2.next());
 

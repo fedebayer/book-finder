@@ -7,35 +7,57 @@ import java.util.Iterator;
 
 import biblioteca.busquedas.Arco;
 import biblioteca.busquedas.ComparadorPesoArco;
+import biblioteca.busquedas.DFS;
 import biblioteca.busquedas.Grafo;
+import biblioteca.busquedas.Greedy;
 import biblioteca.busquedas.arcoIterator;
 
 public class Busquedas<T> implements Grafo<T> {
 	private HashMap<String, ArrayList<Arco<T>>> vertices;
-	@SuppressWarnings("unused")
-	private HashMap<String, String> visitados;
-	private Integer arcoSize;
 
 	public Busquedas() {
 		this.vertices = new HashMap<String, ArrayList<Arco<T>>>();
-		this.arcoSize = 0;
 	}
 
-	public ArrayList<String> generosBuscadosAfter(String search) {
-		if (!contieneVertice(search)) {
-			return null;
-		} else {
-			ArrayList<String> res = new ArrayList<>();
-			Iterator<String> adyacentes = obtenerAdyacentes(search);
-			while (adyacentes.hasNext()) {
-				res.add(adyacentes.next());
-			}
-			Collections.sort(res, new ComparadorPesoArco<T>(search, this));
-			Collections.reverse(res);
-			return res;
+	public ArrayList<String> generosBuscadosAfter(String genero) {
+		ArrayList<String> res = new ArrayList<>();
+		Iterator<String> adyacentes = obtenerAdyacentes(genero);
+		while (adyacentes.hasNext()) {
+			res.add(adyacentes.next());
 		}
+		Collections.sort(res, new ComparadorPesoArco<T>(genero, this));
+		Collections.reverse(res);
+		return res;
 	}
 
+	public ArrayList<String> getSecuenciaGeneros(String genero) {
+		Greedy greedy = new Greedy(this);
+		Iterator<String> adyacentesDeGenero = this.obtenerAdyacentes(genero);
+		ArrayList<String> candidatos = new ArrayList<>();
+		while (adyacentesDeGenero.hasNext()) {
+			candidatos.add(adyacentesDeGenero.next());
+		}
+		return greedy.greedy(candidatos, genero).getSolucion();
+	}
+
+	public Busquedas<?> getGrafoGenerosAfines(String genero){
+		DFS dfs = new DFS(this);
+		ArrayList<ArrayList<String>> generosAfines = dfs.dfs(genero);
+		/*
+		  System.out.println("\n\n Generos afines del genero ingresado: \n"); 
+		  for (ArrayList<String> g : generosAfines) { 
+			  System.out.println(g); 
+			  }
+		 */
+		Busquedas<?> grafoNuevo = new Busquedas<>();
+		for (ArrayList<String> generos : generosAfines) {
+			for (String g : generos) {
+				grafoNuevo.agregarVertice(g);
+			}
+		}
+		return grafoNuevo;
+		
+	}
 	@Override
 	public void agregarVertice(String vertice) {// O(1) tiempo constante de acceso a memoria
 		if (!vertices.containsKey(vertice)) {
@@ -50,7 +72,6 @@ public class Busquedas<T> implements Grafo<T> {
 
 		} else if (vertices.containsKey(vertice1) && vertices.containsKey(vertice2)) {
 			vertices.get(vertice1).add(new Arco<T>(vertice1, vertice2));
-			arcoSize++;
 		}
 	}
 
