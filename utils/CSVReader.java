@@ -22,7 +22,7 @@ public class CSVReader {
 
 		ArrayList<Libro> libros = new ArrayList<>();
 		ArrayList<String> generos = new ArrayList<>();
-		File csvFile = new File("tpe/libros/dataset1.csv");
+		File csvFile = new File("./libros/dataset1.csv");
 		String line = "";
 		String cvsSplitBy = ",";
 
@@ -51,7 +51,7 @@ public class CSVReader {
 	public void getData2(Busquedas<?> busquedas) {
 
 		ArrayList<String> generos = new ArrayList<>();
-		String csvFile = "tpe/libros2/dataset1.csv";
+		String csvFile = "./libros2/dataset1.csv";
 		String line = "";
 		String cvsSplitBy = ",";
 
@@ -74,7 +74,7 @@ public class CSVReader {
 
 	public void getData3(Busquedas<?> busquedas) {
 
-		String csvFile = "tpe/libros2/dataset1.csv";
+		String csvFile = "./libros2/dataset1.csv";
 		String line = "";
 		String cvsSplitBy = ",";
 
