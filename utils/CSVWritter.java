@@ -16,7 +16,7 @@ public class CSVWritter {
 			if (!libros.hasNext()) {
 				return;
 			}
-			File file = new File("tpe/libros/salida.csv");
+			File file = new File("./libros/salida.csv");
 			if (!file.exists()) {
 				file.createNewFile();
 			}
