@@ -111,7 +111,6 @@ public class Main {
 
 			}
 
-			// agregar arcos a estos vertices?
 
 		} catch (IOException e) {
 			e.printStackTrace();
