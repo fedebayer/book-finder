@@ -1,9 +1,9 @@
 # tpeProg3
 
 Proyecto para practicar algoritmos y técnicas de resolución de problemas, y el impacto en la complejidad computacional.
-Además, manipular las Estructuras de datos básicas.
+Además de esto tambien se trata la manipulacion de las estructuras de datos básicas.
 
-Se practican elementos como: Arrays - Listas - Notation Big O - Recursividad, Ordenamientos y árboles, Grafos, Backtracking y Algoritmos greedy
+Se practican elementos como: Arrays - Listas - Notation Big O - Recursividad, Ordenamientos y árboles, Grafos, Backtracking y Algoritmos greedy.
 
  <details close="true">
   <summary><b>:gear: &nbsp;Objetivo</b></summary>
