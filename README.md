@@ -40,3 +40,7 @@ que cumplen con todas las categorías ingresadas.
 - Salida: El programa deberá generar por consola los generos relacionados al ingresado por el usuario.
 
  </details>
+ 
+ ![{93351DF9-FC5E-47F2-9818-F387C9A386E2}](https://user-images.githubusercontent.com/89879671/182614632-193a70de-2533-4b25-bfef-b2e2f25fb0a6.png)
+
+ 
