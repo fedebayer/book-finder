@@ -1,4 +1,11 @@
-# tpeProg3
+# Book Finder Library
+
+![GitHub top language](https://img.shields.io/github/languages/top/FedeBayer/bookFinder?style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/FedeBayer/bookFinder?style=for-the-badge)
+![GitHub issues](https://img.shields.io/github/issues/FedeBayer/bookFinder?style=for-the-badge)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/FedeBayer/bookFinder?style=for-the-badge)
+
+### Description
 
 Proyecto para practicar algoritmos y técnicas de resolución de problemas, y el impacto en la complejidad computacional.
 Además de esto tambien se trata la manipulacion de las estructuras de datos básicas.
@@ -38,6 +45,19 @@ que cumplen con todas las categorías ingresadas.
 
 - Entrada: El programa tomará un archivo .csv de entrada.
 - Salida: El programa deberá generar por consola los generos relacionados al ingresado por el usuario.
+
+ </details>
+ 
+  <details close="true">
+  <summary><b>:gear: &nbsp;Ejemplos de resultados</b></summary>
+ 
+  ![image](https://github.com/FedeBayer/bookFinder/assets/89879671/c05aa775-60ec-4dc6-9536-546bf8aa4343)
+
+ ![image](https://github.com/FedeBayer/bookFinder/assets/89879671/2d068b92-3fa7-4158-85c4-d9b647fab460)
+ 
+![image](https://github.com/FedeBayer/bookFinder/assets/89879671/d00ce830-c4d1-49aa-8d56-9d0abf7965f4)
+
+
 
  </details>
  
